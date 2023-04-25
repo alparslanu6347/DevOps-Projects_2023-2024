@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-configmap
+data:              
+  MYSQL_DATABASE: phonebook
+
+
+# MYSQL_DATABASE      : uygulama içinde olmalı, ayrıca mysql'de de olması lazım
+# MYSQL_USER          : uygulama içinde olmalı, ayrıca mysql'de de olması lazım
+# MYSQL_PASSWORD      : uygulama içinde olmalı, ayrıca mysql'de de olması lazım   
+# MYSQL_DATABASE_HOST : !!! uygulama içinde olmalı, mysql'de olmasına gerek yok  !!!!! (uygulamada var, dockerhub'ta yok)
+# MYSQL_ROOT_PASSWORD : uygulama içinde olmalı, ayrıca mysql'de de olması lazım   (dockerhub'ta TEK ZORUNLU ALAN)
+
+# - name: MYSQL_DATABASE_HOST    # UYGULAMA İÇERİSİNDE BELİRTİLİYOR # bu result_server-deployment  ve web_server-deployment database  pod'unu/adresini buradan bulacak.
+#   value: db-service   # db-service.yaml içerisindeki metadata:name:db-service
+# - name: MYSQL_DATABASE
+#   value: phonebook
+# - name: MYSQL_USER
+#   value: arrow
+# - name: MYSQL_PASSWORD
+#   value: aU123456
+# - name: MYSQL_ROOT_PASSWORD  # (dockerhub'ta bu env de var, ama uygulamada yok)
+#   value: aA123456

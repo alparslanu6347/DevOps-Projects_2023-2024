@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-server-service
+  labels:
+    name: web-server
+    app: phonebook-app
+spec:
+  selector:
+    name: web-server # deployment'da template:metadata:labels:name:web_server ile aynı omalı
+  type: NodePort
+  ports:
+   - name: web-http
+     port: 80
+     targetPort: 80
+     nodePort: 30001
+     protocol: TCP
