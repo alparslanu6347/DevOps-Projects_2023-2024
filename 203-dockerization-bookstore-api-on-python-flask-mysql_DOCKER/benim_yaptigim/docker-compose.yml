@@ -1,0 +1,34 @@
+version: "3.7"
+# docker-compose versionları docker engine versionları ile uyumlu olmalı, arada çok fark varsa uyumlu çalışmayabilir.
+# eski versionlar kullanılıyor. dokümantasyona bakılarak hangi versiyonun kullanılması gerektiğine karar veririz.  
+# https://docs.docker.com/compose/compose-file/compose-versioning/
+# versionların farklılığı bazı parametrelerin değişebilmesinden kaynaklanıyor.
+# eski version'lar da kullanılır. projelerde 2.1 gibi bir version kullanacağız.
+# çünkü version 3'lerde CPU memory limitleri verilemiyor, ancak 2'lerde verilebiliyor. 
+
+services:
+    bookstore-database: # bookstore-api.py  içinde => app.config['MYSQL_DATABASE_HOST'] = 'bookstore-database'
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: levent_123
+            MYSQL_DATABASE: bookstore_db
+            MYSQL_USER: arrow
+            MYSQL_PASSWORD: arrow_123
+        networks:
+            - arrownet  # burada network oluşturmuyoruz, oluşturulmuş bir network'e bağlıyoruz.
+        container_name: database    # container ismi belirtmezsek ==>> dizin ismini kullanarak kendisi isim atıyor. 
+
+    bookstore-app:
+        build: .    # image'i build ediyoruz, !!! dockerfile ve requirements.txt bilgilerini kapsayan build edilmiş, kendi docker-hub'ına push edilmiş bir hazır image ismi de yazabilirdik(noktasız) !!! ==>>image: alparslanu6347/bookstore:1.0
+        restart: always # container'da sorun  --> sürekli olarak bir container kaldır.
+        depends_on: # database'i önce oluştursun --> depends_on ile belirtiyoruz
+            - bookstore-database
+        ports:
+            - "80:80"
+        networks:   # burada network oluşturmuyoruz, oluşturulmuş bir network'e bağlıyoruz.
+            - arrownet
+        container_name: application  # container ismi belirtmezsek ==>> dizin ismini kullanarak kendisi isim atıyor. 
+
+networks:       # network oluşturma da burada !!!services ile aynı hizada!!! # network ismi belirtmezsek ==>> dizin ismini kullanarak kendisi isim atıyor. 
+    arrownet:   # oluşturduğumuz network ismi
+        driver: bridge  # driver: bridge yazılmasa da -->> default olarak bridge’te oluşturur

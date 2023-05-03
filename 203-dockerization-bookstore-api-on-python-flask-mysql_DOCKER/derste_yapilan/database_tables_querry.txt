@@ -1,0 +1,21 @@
+Database içine bağlanıp sorgulama yapacaksan:
+
+docker exec -it myapp ash  ## uygulama içeren container'a bağlan
+apk add --no-cache mysql-client
+mysql -u clarusway -p -h database  ## password : Clarusway_1
+SHOW DATABASES;
+USE bookstore_db;
+SHOW TABLES;
+SELECT * FROM books;
+
+
+
+docker exec -it database bash  ## database içeren container'a bağlan
+mysql -u root -p -h database ## password : P123456p  (docker-compose.yml  içindeki MYSQL_ROOT_PASSWORD: P123456p)
+mysql -u clarusway -p -h database  ## password : Clarusway_1
+mysql -u clarusway -p bookstore_db  ## password : Clarusway_1
+mysql -u root -p bookstore_db   ## password : P123456p (docker-compose.yml  içindeki MYSQL_ROOT_PASSWORD: P123456p)
+SHOW DATABASES;
+USE bookstore_db;
+SHOW TABLES;
+SELECT * FROM books;
