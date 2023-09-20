@@ -9,6 +9,9 @@
   - commands.txt
   - Dockerfile
 - 101_kittens-flask_DOCKER
+  - myapp
+  - command.txt
+  - Dockerfile
 - 203-dockerization-bookstore-api-on-python-flask-mysql_DOCKER
 - Ansible-Website-Project
 - Docker-Projects
