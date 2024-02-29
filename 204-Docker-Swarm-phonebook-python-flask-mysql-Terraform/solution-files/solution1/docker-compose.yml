@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  database: # this name comes from application (['MYSQL_DATABASE_HOST'] = 'database')
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: P123456p
+      MYSQL_DATABASE: phonebook_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Clarusway_1
+    volumes:
+      - db-data:/var/lib/mysql
+    configs:
+      - source: table   # configs name
+        target: /docker-entrypoint-initdb.d/init.sql  # https://hub.docker.com/_/mysql : Initializing a fresh instance
+    networks:
+      - clarusnet
+  app-server:
+    image: phonebook_image  # it will be changed by sed command in leader-master userdata, This line will be used for getting the ECR image name dynamically.
+    deploy:
+      mode: global
+      update_config:
+        parallelism: 2
+        delay: 5s
+        order: start-first
+    ports:
+      - "80:80"
+    networks:
+      - clarusnet
+
+networks:
+  clarusnet:
+
+volumes:
+  db-data:
+
+configs:
+  table:  # configs name
+    file: ./init.sql
