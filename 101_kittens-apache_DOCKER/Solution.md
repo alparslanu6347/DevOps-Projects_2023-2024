@@ -1,8 +1,8 @@
-### docker-instance (host) : Amazon Linux 2023 , t2.micro ###
+## docker-instance (host) : Amazon Linux 2023 , t2.micro ###
 
 # Launch a Docker Machine Instance `Amazon Linux 2023 AMI, t2.micro, ports: 22, 80`  and Connect with SSH
 
-```bash (home/ec2-user)
+```bash
 ssh -i .ssh/call-training.pem ec2-user@ec2-3-133-106-98.us-east-2.compute.amazonaws.com
 
 # .bashrc
