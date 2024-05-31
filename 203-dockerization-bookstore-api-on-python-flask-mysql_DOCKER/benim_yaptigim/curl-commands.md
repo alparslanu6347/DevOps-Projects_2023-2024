@@ -1,5 +1,6 @@
-!!!  ec2 public dns değiştir. !!!
+***  ec2 public dns değiştir. ***
 
+```bash
 curl --request POST \
 --url 'http://ec2-44-197-245-177.compute-1.amazonaws.com/books' \
 --header 'content-type: application/json' \
@@ -27,3 +28,5 @@ curl --request PUT \
 curl --request DELETE \
 --url 'http://ec2-44-197-245-177.compute-1.amazonaws.com/books/2' \
 --header 'content-type: application/json'
+
+```

@@ -1,5 +1,6 @@
 Database içine bağlanıp sorgulama yapacaksan:
 
+```bash
 docker exec -it bookstore-app ash  ## uygulama içeren container'a bağlan
 apk add --no-cache mysql-client
 mysql -u arrow -p -h bookstore-database  ## arrow_123
@@ -7,7 +8,6 @@ SHOW DATABASES;
 USE bookstore_db;
 SHOW TABLES;
 SELECT * FROM books;
-
 
 
 docker exec -it bookstore-database bash  ## database içeren container'a bağlan (container name : bookstore-database)
@@ -24,3 +24,4 @@ USE bookstore_db
 SHOW TABLES;
 SELECT * FROM books;
 
+```
