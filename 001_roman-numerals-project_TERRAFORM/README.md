@@ -1,6 +1,7 @@
 # AWS 001_roman-numerals-project using Terraform
 
 ```bash
+tree
 # 001_roman-numerals-project_TERRAFORM (folder)
 |
 |----main.tf                 # To be delivered by students (Terraform Configuration)
